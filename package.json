@@ -1,0 +1,16 @@
+{
+  "name": "vitepress-doc",
+  "version": "1.0.0",
+  "description": "doc",
+  "main": "index.js",
+  "author": "gxj",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.0.0-alpha.75"
+  }
+}
