@@ -4,7 +4,7 @@
 
 当你真正需要在组件内部改变某个状态的值的时候，你才需要用到useState。 如果你只是想要组件中记住某个变量的值，或许你需要的是useRef或者useMemo，这两个会更安全。
 
-```javascript
+```js
   const [age, setAge] = useState()
 
   useEffect(() => {
@@ -22,7 +22,7 @@
 
 错误的示例：
 
-```javascript
+```js
 import React, {
   useState
 } from "react";
@@ -40,7 +40,7 @@ export default function APP() {
 
 正确的示例：
 
-```javascript
+```js
 import React, {
   useState
 } from "react";
@@ -58,9 +58,9 @@ useEffect(() => {
       }
 ```
 
-### 需要监听某个属性时
+#### 需要监听某个属性时
 
-```javascript
+```js
 useEffect(() => {
   if (props.api) {
     actionRef?.current?.reload();
@@ -70,7 +70,7 @@ useEffect(() => {
 
 ### 清除定时器或者事件绑定
 
-```javascript
+```js
 useEffect(() => {
   window.onresize = () => {
     console.log("resize");
@@ -100,7 +100,7 @@ useCallback是useMemo的另外一种封装，相当于useMemo(()=>fn, deps)。
 防止因为组件重新渲染(例如useState的更新)，导致方法被重新创建，起到缓存作用只有第二个参数变化了，才重新声明一次
 和useState一样，原理是使用了JS的闭包来实现的，让变量和方法存在内存中。
 
-```javascript
+```js
 const change = useCallBack(
   () => {
     setList([...list, text])
@@ -112,9 +112,11 @@ const change = useCallBack(
 ## useMemo
 
 类似vue的计算属性。
-如果你的某个状态是依赖别的状态改变而改变，那么你应该使用useMemo，而不是在useEffect中监听这个状态再setState。例如，请避免下面的写法：
+如果你的某个状态是依赖别的状态改变而改变，那么你应该使用useMemo，而不是在useEffect中监听这个状态再setState。
 
-```javascript
+例如，请避免下面的写法：
+
+```js
 const [year, setYear] = useState()
 const [age, setAge] = useState()
 useEffect(() => {
@@ -124,9 +126,26 @@ useEffect(() => {
 
 应该改成：
 
-```javascript
+```js
 const [year, setYear] = useState()
 const age = useMemo(() => {
   return new Date().getFullYear() - year
 }, [year])
 ```
+## 设置多个className
+使用模板字符串，每个类名要空格隔开
+```tsx
+<div 
+  className={`${styles.circleStyle} ${styles.circle1}`}
+>
+</div>
+```
+
+## vscode快速创建模板
+1. 查找插件es7并安装
+2. 快捷键
+    1. rfc(快速创建一个function component)
+    2. rcc (快速创建一个组件extends)
+    3. rconst 快速创建一个constuctor
+    4. rcep 快速创建一个组件(使用extends方式)
+    5. rcredux 快速创建一个 redux格式的类模板
