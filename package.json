@@ -9,7 +9,7 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "serve": "vitepress serve docs",
-    "deploy": "vitepress build && gh-pages -d dist"
+    "deploy": "vitepress build docs && gh-pages -d dist"
   },
   "devDependencies": {
     "gh-pages": "^5.0.0",
