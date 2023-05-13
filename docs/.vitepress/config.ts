@@ -15,7 +15,7 @@ export default defineConfig({
         ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
     title: '学习笔记',
-    base: '/docs/',
+    base: '/myDocs/',
     lang: 'zh-CN',
     description: '茂茂的成长之路，包含前端常用知识、源码阅读笔记、各种奇淫技巧、日常提效工具等',
     lastUpdated: true,
