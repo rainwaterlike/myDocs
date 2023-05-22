@@ -17,7 +17,7 @@ export default defineConfig({
     title: '学习笔记',
     base: '/docs/',
     lang: 'zh-CN',
-    description: '茂茂的成长之路，包含前端常用知识、源码阅读笔记、各种奇淫技巧、日常提效工具等',
+    // description: '',
     lastUpdated: true,
     cleanUrls: true,
     /* markdown 配置 */
@@ -33,14 +33,6 @@ export default defineConfig({
         },
         sidebar: {
             '/': [
-                {
-                    text: 'JavaScript',
-                    link: '/src/JavaScript/',
-                },
-                {
-                    text: 'React',
-                    link: '/src/React/',
-                },
                 {
                     text: 'TypeScript',
                     link: '/src/TypeScript/index',
@@ -62,9 +54,17 @@ export default defineConfig({
                     link: '/src/css/index',
                 },
                 {
+                    text: 'JavaScript',
+                    link: '/src/JavaScript/',
+                },
+                {
                     text: 'vue',
                     link: '/src/vue/index',
-                }
+                }, 
+                {
+                    text: 'React',
+                    link: '/src/React/',
+                },
             ],
         },
         //   nav: [
@@ -79,9 +79,9 @@ export default defineConfig({
             prev: '上一篇',
             next: '下一篇'
         },
-        footer: {
-            message: '如有转载或 CV 的请标注本站原文地址',
-            copyright: 'Copyright © 2019-present maomao'
-        },
+        // footer: {
+        //     message: '如有转载或 CV 的请标注本站原文地址',
+        //     copyright: 'Copyright © 2019-present maomao'
+        // },
     },
 })
