@@ -85,36 +85,6 @@ function test() {
             "Average": 17,
             "High": 45,
             "DtmStamp": 1358226000000
-        },
-        {
-            "name": "John",
-            "Average": 18,
-            "High": 87,
-            "DtmStamp": 1358226000000
-        },
-        {
-            "name": "Jane",
-            "Average": 15,
-            "High": 10,
-            "DtmStamp": 1358226060000
-        },
-        {
-            "name": "John",
-            "Average": 16,
-            "High": 87,
-            "DtmStamp": 1358226060000
-        },
-        {
-            "name": "John",
-            "Average": 17,
-            "High": 45,
-            "DtmStamp": 1358226060000
-        },
-        {
-            "name": "Jane",
-            "Average": 18,
-            "High": 92,
-            "DtmStamp": 1358226060000
         }
     ];
 
@@ -137,6 +107,35 @@ function groupBy(array, f) {
         return groups[group];
     });
 }
+```
+
+### 数组转对象
+把数组转换为对象，key为itemName，值为title
+```js
+const itemTitle = [
+  {
+    title: '案件名称',
+    itemName: 'caseName'
+  },
+  {
+    title: '案件类型',
+    itemName: 'caseType'
+  },
+  {
+    title: '案件性质',
+    itemName: 'caseNature'
+  }
+]
+```
+
+可以使用reduce方法将数组转换为对象：
+
+```js
+const itemObject = itemTitle.reduce((obj, item) => {
+  obj[item.itemName] = item.title;
+  return obj;
+}, {});
+console.log(itemObject);
 ```
 
 ## 对象
@@ -200,7 +199,7 @@ obj["id"] = '001';
   </Descriptions>
 ```
 
-## 可选链?.
+## 可选链 ?.
 
 undefined时不报错，避免写一堆的if判断
 
@@ -209,6 +208,40 @@ if (res?.data?.content) {
     //true 代表content能获取到
 }
 ```
+
+## 逻辑或运算符 || 
+
+短路运算符,可以给一个默认值
+
+```js 
+function greet(name) {
+  return "Hello, " + (name || "Guest") + "!";
+}
+
+console.log(greet("Alice")); // 输出 "Hello, Alice!"
+console.log(greet()); // 输出 "Hello, Guest!"，因为没有提供参数
+```
+
+## 逻辑与运算符 &&
+
+将两个表达式组合在一起，只有当两个表达式的值都为 true 时，整个表达式才会返回 true。
+
+```jsx
+<>
+  isShow && <div>显示</div>
+</>
+```
+
+## 逻辑非运算符 !
+
+对一个表达式取反，即如果表达式的值为 false，则返回 true；如果表达式的值为 true，则返回 false。
+
+```js
+if(!isShow){
+  ...
+}
+```
+
 
 ## localStorage
 
@@ -682,5 +715,118 @@ mounted() {
      */
     that.titleImgHeight.height = document.body.clientWidth / 18 + "px";
   };
+}
+```
+
+## 避免冗长/丑陋的if/else语句
+
+### 1.字符串拼接
+```js
+function setAccType(accType) {
+    if (accType == "PLATINUM") {
+        return "Platinum Customer";
+    } else if (accType == "GOLD") {
+        return "Gold Customer";
+    } else if (accType == "SILVER") {
+        return "Silver Customer";
+    }
+}
+```
+
+像这种条件和返回值有非常强的相关性的语句，通常我们就可以通过下面这种非常简洁的方式来处理，让多行秒变一行：
+
+```js
+function setAccType(accType){
+    return accType[0] + accType.slice(1).toLowerCase() + ' Customer';
+    // or
+    return `${accType[0] + accType.slice(1).toLowerCase()} Customer`;
+}
+```
+
+### 2.switch/case 语句也是比较常用的技巧，来看下面这个例子：
+```js
+if (status === 200) {
+  handleSuccess()
+} else if (status === 401) {
+  handleUnauthorized()
+} else if (status === 404) {
+  handleNotFound()
+} else {
+  handleUnknownError()
+}
+```
+像这样的，我们就可以通过 switch/case 来进行处理：
+```js
+switch (status) {  
+    case 200:  
+        handleSuccess()  
+        break  
+    case 401:  
+        handleUnauthorized()  
+        break  
+    case 404:  
+        handleNotFound()  
+        break  
+    default:  
+        handleUnknownError()  
+        break  
+}
+```
+虽然多了几行代码，但避免了一次又一次的重复的全等检查，而且整体上更精简、直观。
+
+### 3. 使用对象映射
+```js
+const statusColors = {
+    success: 'green',
+    warning: 'yellow',
+    info: 'blue',
+    error: 'red'
+};
+
+function getStatusColor(status) {
+    return statusColors[status] || '';
+}
+```
+
+### 4.使用include
+```js
+function test(fruit, quantity) {
+  const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
+
+  // 条件1: fruit 必须非空
+  if (fruit) {
+    // 条件2: 必须是红色的水果
+    if (redFruits.includes(fruit)) {
+      console.log('red');
+
+      // 条件3: 必须大于10个
+      if (quantity > 10) {
+        console.log('big quantity');
+      }
+    }
+  } else {
+    throw new Error('No fruit!');
+  }
+}
+
+test(null); // error: No fruits
+test('apple'); // red
+test('apple', 20); // red, big quantity
+```
+
+通过倒置条件和提前返回减少嵌套
+
+```js
+function test(fruit, quantity) {
+  const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
+
+  if (!fruit) throw new Error('No fruit!'); 
+  if (!redFruits.includes(fruit)) return; 
+
+  console.log('red');
+
+  if (quantity > 10) {
+    console.log('big quantity');
+  }
 }
 ```
