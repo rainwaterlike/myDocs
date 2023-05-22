@@ -15,7 +15,7 @@ export default defineConfig({
         ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
     title: '学习笔记',
-    base: '/docs/',
+    base: '/myDocs/',
     lang: 'zh-CN',
     // description: '',
     lastUpdated: true,

@@ -8,9 +8,11 @@
   "scripts": {
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "serve": "vitepress serve docs",
+    "deploy": "vitepress build docs && gh-pages -d dist"
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "vitepress": "^1.0.0-alpha.75"
   }
 }
