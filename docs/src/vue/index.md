@@ -38,3 +38,36 @@ export default {
 }
 </script>
 ```
+
+## 父子组件v-model通讯
+父组件
+```vue
+<template>
+  <MyInput v-model="inputVal"></MyInput>
+</template>
+
+<script lang="ts" setup>
+  import MyInput from './MyInput.vue';
+</script>
+```
+子组件
+
+这里的defineProps可以是任意名称，defineEmits是固定名称 `update:modelValue`，不然数据会回传不到父组件
+```vue
+<template>
+    {{ `子组件：${value}` }}
+    <input type="text" v-model="value" @input="change">
+</template>
+
+<script lang="ts" setup>
+import { ref } from "vue";
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
+const value = ref(props.modelValue)
+
+const change = (e: Event) => {
+    emit('update:modelValue', `${(e.target as HTMLInputElement).value}`)
+}
+</script>
+
+```
