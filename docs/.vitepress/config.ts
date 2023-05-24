@@ -65,6 +65,10 @@ export default defineConfig({
                     text: 'React',
                     link: '/src/React/',
                 },
+                {
+                    text:'前端工程化',
+                    link:'/src/engineering/'
+                }
             ],
         },
         //   nav: [
