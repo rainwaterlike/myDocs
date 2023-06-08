@@ -11,10 +11,10 @@ export default defineConfig({
                     'width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
             },
         ],
-        ['meta', { name: 'keywords', content: '学习笔记' }],
+        ['meta', { name: 'keywords', content: '关关的学习(抄袭)笔记' }],
         ['link', { rel: 'icon', href: '/favicon.ico' }],
     ],
-    title: '学习笔记',
+    title: '关关的学习(抄袭)笔记',
     base: '/myDocs/',
     lang: 'zh-CN',
     // description: '',
@@ -78,7 +78,7 @@ export default defineConfig({
         darkModeSwitchLabel: '外观',
         returnToTopLabel: '返回顶部',
         lastUpdatedText: '上次更新',
-        socialLinks: [{ icon: 'github', link: 'https://github.com/rainwaterlike' }],
+        socialLinks: [{ icon: 'github', link: 'https://github.com/rainwaterlike/myDocs' }],
         docFooter: {
             prev: '上一篇',
             next: '下一篇'
