@@ -72,6 +72,46 @@ const change = (e: Event) => {
 
 ```
 
+## defineExpose
+指定在`<script setup>`组件中要暴露出去的属性
+
+子组件：
+```vue
+<template>
+  <a-drawer
+      v-model:visible="visible"
+      title="项目配置"
+      placement="right"
+      width="300px"
+  >
+  </a-drawer>
+</template>
+
+<script setup>
+import {ref} from "vue";
+
+const visible = ref(false)
+const open = () => {
+  visible.value = true
+}
+//暴露open方法
+defineExpose({open})
+</script>
+```
+
+父组件：
+```vue
+<template>
+  <button @click="SettingDrawerRef?.open()"></button>
+  <SettingDrawer ref="SettingDrawerRef"></SettingDrawer>
+</template>
+
+<script setup>
+import {ref} from "vue";
+const SettingDrawerRef = ref()
+</script>
+```
+
 ## 动态换肤
 ### 安装必要插件
 在这里我们会用到两个样式处理插件，项目执行以下命令：
@@ -291,4 +331,72 @@ module.exports = {
 window.less.modifyVars({
     "@primary-color": '#f5222d',
 })
+```
+
+## 着色器vue-color-kit
+[官网](https://github.com/anish2690/vue-color-kit)
+```sh
+yarn add vue-color-kit
+```
+
+使用
+```vue
+<template>
+    <ColorPicker
+        theme="light"
+        :sucker-hide="true"
+        :color="themeColor.primaryColor"
+        :colors-default="defaultColorList"
+        @changeColor="changeColor"
+    ></ColorPicker>
+  </a-drawer>
+</template>
+
+<script setup>
+import {ref, watch} from "vue";
+import {ColorPicker} from 'vue-color-kit'
+import 'vue-color-kit/dist/vue-color-kit.css'
+import {useLocalStorage} from '@vueuse/core'
+//着色器的颜色
+const themeColor = useLocalStorage('themeColor', {})
+const changeColor = (colorObj) => {
+  themeColor.value = {primaryColor: colorObj.hex}
+}
+
+// 默认显示的主题色列表
+const defaultColorList = [
+  '#165DFF',
+  '#409EFF',
+  '#2d8cf0',
+  '#007AFF',
+  '#5ac8fa',
+  '#5856D6',
+  '#536dfe',
+  '#9c27b0',
+  '#AF52DE',
+  '#0096c7',
+  '#00C1D4',
+  '#34C759',
+  '#43a047',
+  '#7cb342',
+  '#c0ca33',
+  '#78DEC7',
+  '#e53935',
+  '#d81b60',
+  '#f4511e',
+  '#fb8c00',
+  '#ffb300',
+  '#fdd835',
+  '#6d4c41',
+  '#546e7a'
+]
+</script>
+
+<style scoped>
+/*处理着色器内容溢出的bug*/
+.hu-color-picker {
+  box-sizing: content-box;
+  margin: auto;
+}
+</style>
 ```
