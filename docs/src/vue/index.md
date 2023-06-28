@@ -52,7 +52,7 @@ export default {
 ```
 子组件
 
-这里的defineProps可以是任意名称，defineEmits是固定名称 `update:modelValue`，不然数据会回传不到父组件
+这里的`defineProps`可以是任意名称，`defineEmits`必须为固定名称 `update:modelValue`，不然数据会回传不到父组件
 ```vue
 <template>
     {{ `子组件：${value}` }}
