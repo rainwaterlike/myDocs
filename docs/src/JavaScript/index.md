@@ -830,3 +830,47 @@ function test(fruit, quantity) {
   }
 }
 ```
+
+## 根据id数组获取数组内对应的值
+给一个存放id的数组 [1001,1002]，从数据源数组中获取这两个id对应的对象[{id:1001,name:zhangsan},{id:1002,name:lisi}]
+```js
+dataSource.value.filter(obj => selectedKeys.value.includes(obj.id))
+```
+
+## 给对象排序
+```js
+const sortObj = (obj, sortRules) => {
+  const sortedKeys = Object.keys(sortRules).sort((a, b) => sortRules[a] - sortRules[b]);
+  const sortedObj = {};
+
+  sortedKeys.forEach(key => {
+    if (obj.hasOwnProperty(key)) {
+      sortedObj[key] = obj[key];
+    }
+  });
+
+  return sortedObj;
+};
+
+const obj = {
+  caseLocation: '珠海市香洲区贵筑街道102号',
+  caseType: '刑事案件',
+  briefCase: '2020年10月，珠海市检察院接到该市公安局移送起诉',
+  caseName: '鲍红丽贩毒案',
+  caseNature: '18诈骗',
+  caseTime: '2021-06-02',
+};
+
+const sortRules = {
+  caseName: 1,
+  caseType: 2,
+  caseNature: 3,
+  caseTime: 4,
+  caseLocation: 5,
+  briefCase: 6,
+};
+
+const sortedObj = sortObj(obj, sortRules);
+console.log(sortedObj);
+```
+
