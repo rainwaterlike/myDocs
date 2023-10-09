@@ -1,4 +1,6 @@
-## 生成密钥
+## github项目添加ssh密钥
+
+### 生成密钥
 ```sh
 ssh-keygen -t ed25519 -C "XXX@qq.com"
 ```
@@ -13,8 +15,6 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
-## github项目添加ssh密钥
-
 - 把生成的`id_ed25519.pub`复制一下。
 
 - 在 GitHub 网站上，点击你的头像，然后选择`Settings`。
@@ -28,3 +28,9 @@ ssh-add ~/.ssh/id_ed25519
 - 在`Key`字段中粘贴你复制的公钥。
 
 - 点击`Add SSH key`按钮。
+
+## 设置username和email
+```sh
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
