@@ -481,6 +481,13 @@ const VNodes = defineComponent({
 </script>
 ```
 
+### 样式穿透
+```css
+.box :deep(.ant-slider-disabled .ant-slider-track) {
+  background-color: yellow !important;
+}
+```
+
 ## 点击左右按钮切换列表的当前项目
 
 ```vue
