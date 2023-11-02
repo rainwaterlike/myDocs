@@ -57,3 +57,13 @@ height: calc(100vh - 56px - 80px);
 /deep/ .caseinfoFormLabel > .ant-form-item-label{
 }
 ```
+
+## grid布局
+使用场景:比如一个横向列表，需要间隔一样，用`flex`布局的话会选择`justify-content:space-between`的方式
+这种布局在列表只有两项，就变成一头一尾的分布，而不是排在后面的布局，这个时候可以使用grid布局
+```css
+.box{
+  display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+```

@@ -66,6 +66,10 @@ export default defineConfig({
                     link: '/src/React/',
                 },
                 {
+                    text: 'git',
+                    link: '/src/git/',
+                },
+                {
                     text:'前端工程化',
                     link:'/src/engineering/'
                 }
