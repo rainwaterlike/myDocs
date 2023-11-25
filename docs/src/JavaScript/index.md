@@ -830,3 +830,43 @@ function test(fruit, quantity) {
   }
 }
 ```
+
+## 树形数据，输入节点名称，返回完整路径
+```js
+function findPath(data, target) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].name === target) {
+                return data[i].name.split('-').reverse().join('-');
+            } else if (data[i].children) {
+                let result = findPath(data[i].children, target);
+                if (result) {
+                    return data[i].name + '-' + result;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    const treeData = [
+        {
+            name: '贵州',
+            children: [
+                {
+                    name: '贵阳',
+                    children: [{
+                        name: '张三'
+                    }]
+                },
+                {
+                    name: '遵义',
+                    children: [{
+                        name: '李四'
+                    }]
+                }
+            ]
+        }
+    ];
+    console.log('222', findPath(treeData, '张三')) 
+    console.log('333', findPath(treeData, '李四')) 
+```
