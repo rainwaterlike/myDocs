@@ -1,5 +1,6 @@
 
 import { defineConfig } from 'vitepress'
+import { algolia } from './config/algolia'
 
 export default defineConfig({
     head: [
@@ -34,8 +35,33 @@ export default defineConfig({
         sidebar: {
             '/': [
                 {
+                    text: 'JavaScript',
+                    link: '/src/JavaScript/',
+                },
+                {
+                    text: 'vue',
+                    link: '/src/vue/index',
+                }, 
+                {
+                    text: 'css',
+                    link: '/src/css/index',
+                },
+                {
+                    text: 'FullCalendar',
+                    link: '/src/FullCalendar/index',
+                },
+                {
+                    text: 'dayjs',
+                    link: '/src/dayjs/index',
+                },
+                {
+                    text: 'vscode',
+                    link: '/src/vscode/index',
+                },
+                {
                     text: 'TypeScript',
                     link: '/src/TypeScript/index',
+                    collapsed: true,
                     items: [
                         { text: '类', link: '/src/TypeScript/01_类' },
                         { text: '数组', link: '/src/TypeScript/02_数组' },
@@ -49,18 +75,6 @@ export default defineConfig({
                         { text: '泛型', link: '/src/TypeScript/010_泛型' },
                     ],
                 },
-                {
-                    text: 'css',
-                    link: '/src/css/index',
-                },
-                {
-                    text: 'JavaScript',
-                    link: '/src/JavaScript/',
-                },
-                {
-                    text: 'vue',
-                    link: '/src/vue/index',
-                }, 
                 {
                     text: 'React',
                     link: '/src/React/',
@@ -83,6 +97,7 @@ export default defineConfig({
         returnToTopLabel: '返回顶部',
         lastUpdatedText: '上次更新',
         socialLinks: [{ icon: 'github', link: 'https://github.com/rainwaterlike/myDocs' }],
+        algolia,
         docFooter: {
             prev: '上一篇',
             next: '下一篇'

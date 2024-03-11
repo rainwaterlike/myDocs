@@ -705,3 +705,97 @@ const toggleSelection = (jcbh) => {
 };
 </script>
 ```
+
+
+## 动态路由
+```js
+{
+    path: '/taskForm/:id',
+    name: 'taskForm',
+    props: {
+      //顶部是否显示返回按钮
+      showBack: true
+    },
+    component: taskForm,
+  }
+```
+
+## 路由跳转提示 [Vue Router warn]: Path "/taskForm" was passed with params but they will be ignored. Use a named route alongside params instead.
+改为命名路由跳转
+```js
+router.push({
+        name:'taskForm',
+        params:{
+            id:id
+        }
+    })
+```
+
+## 动态路由跳转时不传参数提示Missing required param "id"
+因为id是必传的，但是跳转的时候没有传id，在path的最后添加一个`?`即可把id改为非必传
+```js
+  //农户信息表单
+  {
+    path: '/farmersInfo/farmersForm/:id?',
+    name: 'farmersForm',
+    props:{
+      //顶部是否显示返回按钮
+      showBack: true,
+    },
+    component: farmersForm,
+  },
+```
+
+## 把src/icons/svg下的所有图片名称做成一个数组
+```js
+import Vue from 'vue'
+import SvgIcon from '@/components/SvgIcon'// svg component
+
+// register globally
+Vue.component('svg-icon', SvgIcon)
+
+const req = require.context('./svg', false, /\.svg$/)
+const requireAll = requireContext => requireContext.keys().map(requireContext)
+requireAll(req)
+
+let svgNameList = []
+function getSvgNameList() {
+/** 把src/icons/svg下的所有图片名称做成一个数组 */
+  svgNameList = requireAll(req).map(item => item.default.id?.slice(5))
+}
+getSvgNameList()
+export default svgNameList
+``` 
+
+## style 使用v-bind绑定响应式变量
+```vue
+<script setup>
+  const clockAtColor = ref('')
+  clockAtColor.value = formModel.value.clockAt === '无' ? '#969799' : '#000'
+</script>
+
+<style scoped>
+:deep(.clockAt .van-field__control){
+  color:v-bind(clockAtColor)
+}
+</style>
+```
+
+## 子组件监听props的变化
+
+```js
+const props = defineProps<{
+  value: string
+}>()
+
+```
+`props.value`并不是响应式的数据。当父组件中的`relationship`发生变化时，`props.value`并不会自动更新
+因此`watch`监听不到变化。
+
+要使子组件能够监听到`props.value`的变化，可以使用`toRef()`函数将`props.value`转换为响应式数据。修改子组件代码如下：
+```js
+//第一种方法
+const relationship = toRef(props, 'value')
+//第二种方法
+const relationship = ref(props.value)
+```
