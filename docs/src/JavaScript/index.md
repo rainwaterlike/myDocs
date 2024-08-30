@@ -2,7 +2,7 @@
 
 ## 数组
 
-### 把开始时间和结束时间拼装为数组 
+### 把开始时间和结束时间拼装为数组
 
 ```js
 const validDateRange = [validBeginTime, validEndTime]
@@ -28,7 +28,7 @@ const arr = [...new Set(sysNameArr)];
 
 ```js
 couponMemberList = couponMemberList?.map((item: any) => ({
-    memberId: item.id,
+  memberId: item.id,
 }));
 ```
 
@@ -38,19 +38,19 @@ couponMemberList = couponMemberList?.map((item: any) => ({
 
 ```js
 let list = [{
-    id: 1,
-    name: '张三',
-    age: 15
+  id: 1,
+  name: '张三',
+  age: 15
 }]
 
 list = list?.map(({
+  id,
+  name
+}) => ({
+  return {
     id,
     name
-}) => ({
-    return {
-        id,
-        name
-    }
+  }
 }));
 
 console.log(list) //[{ id:1, name:'张三' }]
@@ -60,7 +60,7 @@ console.log(list) //[{ id:1, name:'张三' }]
 
 ```js
 arr = arr.filter((item) => {
-    return item.orgCategory === "1";
+  return item.orgCategory === "1";
 })
 ```
 
@@ -68,52 +68,53 @@ arr = arr.filter((item) => {
 
 ```js
 function test() {
-    var list = [{
-            "name": "John",
-            "Average": 15,
-            "High": 10,
-            "DtmStamp": 1358226000000
-        },
-        {
-            "name": "Jane",
-            "Average": 16,
-            "High": 92,
-            "DtmStamp": 1358226000000
-        },
-        {
-            "name": "Jane",
-            "Average": 17,
-            "High": 45,
-            "DtmStamp": 1358226000000
-        }
-    ];
+  var list = [{
+      "name": "John",
+      "Average": 15,
+      "High": 10,
+      "DtmStamp": 1358226000000
+    },
+    {
+      "name": "Jane",
+      "Average": 16,
+      "High": 92,
+      "DtmStamp": 1358226000000
+    },
+    {
+      "name": "Jane",
+      "Average": 17,
+      "High": 45,
+      "DtmStamp": 1358226000000
+    }
+  ];
 
-    var sorted = this.groupBy(list, function(item) {
-        return [item.name + item.High];
-    });
-    console.log(sorted);
+  var sorted = this.groupBy(list, function(item) {
+    return [item.name + item.High];
+  });
+  console.log(sorted);
 }
 test();
 
 function groupBy(array, f) {
-    debugger;
-    var groups = {};
-    array.forEach(function(o) {
-        var group = JSON.stringify(f(o));
-        groups[group] = groups[group] || [];
-        groups[group].push(o);
-    });
-    return Object.keys(groups).map(function(group) {
-        return groups[group];
-    });
+  debugger;
+  var groups = {};
+  array.forEach(function(o) {
+    var group = JSON.stringify(f(o));
+    groups[group] = groups[group] || [];
+    groups[group].push(o);
+  });
+  return Object.keys(groups).map(function(group) {
+    return groups[group];
+  });
 }
 ```
 
 ### 数组转对象
+
 把数组转换为对象，key为itemName，值为title
+
 ```js
-const itemTitle = [
-  {
+const itemTitle = [{
     title: '案件名称',
     itemName: 'caseName'
   },
@@ -143,27 +144,29 @@ console.log(itemObject);
 ### 解构
 
 ```js
-const { validDateRange } = values;
+const {
+  validDateRange
+} = values;
 ```
 
 ### 把拼装好的数据覆盖并合并
 
 ```js
 const data = {
-    id: 1,
-    name: '张三',
-    age: 15,
-    children: [
-        '888', '999'
-    ]
+  id: 1,
+  name: '张三',
+  age: 15,
+  children: [
+    '888', '999'
+  ]
 }
 
 const children = ['111', '222']
 
 const obj = {
-    ...data, //展开对象
-    //如果key相同，下面的会覆盖上面的
-    children
+  ...data, //展开对象
+  //如果key相同，下面的会覆盖上面的
+  children
 };
 ```
 
@@ -179,41 +182,41 @@ obj["id"] = '001';
 
 ```js
  const obj = {
-     id: 111,
-     name: '张三',
-     age: 12,
- }; 
- <Descriptions title = "User Info" > {
-      Object.keys(obj).map(key =>
-          ( < Descriptions.Item label = {
-                  obj[key]
-              }
-              key = {
-                  key
-              } > {
-                  obj[key]
-              } 
-              </Descriptions.Item>
-          ))
-  } 
-  </Descriptions>
+   id: 111,
+   name: '张三',
+   age: 12,
+ }; <
+ Descriptions title = "User Info" > {
+     Object.keys(obj).map(key =>
+       ( < Descriptions.Item label = {
+           obj[key]
+         }
+         key = {
+           key
+         } > {
+           obj[key]
+         } <
+         /Descriptions.Item>
+       ))
+   } <
+   /Descriptions>
 ```
 
-## 可选链 ?.
+## 可选链 ?
 
 undefined时不报错，避免写一堆的if判断
 
 ```js
 if (res?.data?.content) {
-    //true 代表content能获取到
+  //true 代表content能获取到
 }
 ```
 
-## 逻辑或运算符 || 
+## 逻辑或运算符 ||
 
-短路运算符,可以给一个默认值
+短路运算符, 可以给一个默认值
 
-```js 
+```js
 function greet(name) {
   return "Hello, " + (name || "Guest") + "!";
 }
@@ -224,12 +227,14 @@ console.log(greet()); // 输出 "Hello, Guest!"，因为没有提供参数
 
 逻辑或运算符 `||` 有明显弊端，它会覆盖所有的假值，如（0, '', false）
 
-```js 
+```js
 let defaultHeight = 0;
 let height = defaultHeight || 10;
 console.log(height); // 10
 ```
+
 ## 空位合并操作符 ??
+
 对假值的处理更加的全面，当且仅当表达式左侧为 undefined 或 null，就返回其右侧默认值
 
 ```js
@@ -242,7 +247,6 @@ console.log(value); // 0
 let x = null;
 let y = x ?? 10;
 console.log(y); // 10
-
 ```
 
 ## 逻辑与运算符 &&
@@ -255,16 +259,15 @@ console.log(y); // 10
 </>
 ```
 
-## 逻辑非运算符 !
+## 逻辑非运算符
 
 对一个表达式取反，即如果表达式的值为 false，则返回 true；如果表达式的值为 true，则返回 false。
 
 ```js
-if(!isShow){
+if (!isShow) {
   ...
 }
 ```
-
 
 ## localStorage
 
@@ -272,7 +275,7 @@ if(!isShow){
 
 ```js
 localStorage.setItem(
-    'userUseColor' + utils.cookies.get("uuid"), JSON.stringify(data)
+  'userUseColor' + utils.cookies.get("uuid"), JSON.stringify(data)
 );
 ```
 
@@ -294,16 +297,16 @@ localStorage.removeItem('userUseColor' + utils.cookies.get("uuid"))
 
 ```js
 getBrightColor(color, range) {
-    let newColor = '#';
-    for (let i = 0; i < 3; i++) {
-        const hxStr = color.substr(i * 2 + 1, 2);
-        let val = parseInt(hxStr, 16);
-        val += range;
-        if (val < 0) val = 0;
-        else if (val > 255) val = 255;
-        newColor += val.toString(16).padStart(2, '0')
-    }
-    return newColor;
+  let newColor = '#';
+  for (let i = 0; i < 3; i++) {
+    const hxStr = color.substr(i * 2 + 1, 2);
+    let val = parseInt(hxStr, 16);
+    val += range;
+    if (val < 0) val = 0;
+    else if (val > 255) val = 255;
+    newColor += val.toString(16).padStart(2, '0')
+  }
+  return newColor;
 }
 ```
 
@@ -312,12 +315,12 @@ getBrightColor(color, range) {
 ```js
 // 得到hex颜色值为color的减淡颜色值，level为加深的程度，限0-1之间
 getLightColor(color, level) {
-    //var r = /^\#?[0-9A-F]{6}$/;
-    //if (!r.test(color)) return window.alert("减淡颜色值出错:"+color);
-    var rgbc = this.hexToRgb(color);
-    for (var i = 0; i < 3; i++) rgbc[i] =
-        Math.floor((255 - rgbc[i]) * level + rgbc[i]);
-    return this.rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
+  //var r = /^\#?[0-9A-F]{6}$/;
+  //if (!r.test(color)) return window.alert("减淡颜色值出错:"+color);
+  var rgbc = this.hexToRgb(color);
+  for (var i = 0; i < 3; i++) rgbc[i] =
+    Math.floor((255 - rgbc[i]) * level + rgbc[i]);
+  return this.rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
 }
 //测试
 this.getBrightColor(value, 40)
@@ -328,12 +331,12 @@ this.getBrightColor(value, 40)
 ```js
 //得到hex颜色值为color的加深颜色值，level为加深的程度，限0-1之间
 getDarkColor(color, level) {
-    //var r =/^\#?[0-9A-F]{6}$/;
-    //if (!r.test(color)) return window.alert("加深颜色值出错:"+color);
-    var rgbc = this.hexToRgb(color);
-    //floor 向下取整
-    for (var i = 0; i < 3; i++) rgbc[i] = Math.floor(rgbc[i] * (1 - level));
-    return this.rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
+  //var r =/^\#?[0-9A-F]{6}$/;
+  //if (!r.test(color)) return window.alert("加深颜色值出错:"+color);
+  var rgbc = this.hexToRgb(color);
+  //floor 向下取整
+  for (var i = 0; i < 3; i++) rgbc[i] = Math.floor(rgbc[i] * (1 - level));
+  return this.rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
 }
 //测试
 this.getDarkColor(value, '0.15')
@@ -344,12 +347,12 @@ this.getDarkColor(value, '0.15')
 ```js
 //RGB颜色转Hex颜色
 rgbToHex(a, b, c) {
-    //var r = /^\d{1,3}$/;
-    //if (!r.test(a) || !r.test(b) || !r.test(c)) return window.alert("RGB颜色转Hex颜色出错:"+a+' '+b+' '+c);
-    var hexs = [a.toString(16), b.toString(16), c.toString(16)];
-    for (var i = 0; i < 3; i++)
-        if (hexs[i].length == 1) hexs[i] = "0" + hexs[i];
-    return "#" + hexs.join("");
+  //var r = /^\d{1,3}$/;
+  //if (!r.test(a) || !r.test(b) || !r.test(c)) return window.alert("RGB颜色转Hex颜色出错:"+a+' '+b+' '+c);
+  var hexs = [a.toString(16), b.toString(16), c.toString(16)];
+  for (var i = 0; i < 3; i++)
+    if (hexs[i].length == 1) hexs[i] = "0" + hexs[i];
+  return "#" + hexs.join("");
 }
 ```
 
@@ -358,18 +361,18 @@ rgbToHex(a, b, c) {
 ```js
 //hex颜色转rgb颜色
 hexToRgb(str) {
-    //var r = /^\#?[0-9A-F]{6}$/;
-    //test方法检查在字符串中是否存在一个模式，如果存在则返回true，否则返回false
-    //if (!r.test(str)) return window.alert("输入错误的hex:"+str);
-    //replace替换查找的到的字符串
-    str = str.replace("#", "");
-    //match得到查询数组
-    var hxs = str.match(/../g);
-    //alert('bf:'+hxs)
-    for (var i = 0; i < 3; i++) hxs[i] = parseInt(hxs[i], 16);
-    //alert(parseInt(80, 16))
-    //console.log(hxs);
-    return hxs;
+  //var r = /^\#?[0-9A-F]{6}$/;
+  //test方法检查在字符串中是否存在一个模式，如果存在则返回true，否则返回false
+  //if (!r.test(str)) return window.alert("输入错误的hex:"+str);
+  //replace替换查找的到的字符串
+  str = str.replace("#", "");
+  //match得到查询数组
+  var hxs = str.match(/../g);
+  //alert('bf:'+hxs)
+  for (var i = 0; i < 3; i++) hxs[i] = parseInt(hxs[i], 16);
+  //alert(parseInt(80, 16))
+  //console.log(hxs);
+  return hxs;
 }
 ```
 
@@ -383,7 +386,7 @@ hexToRgb(str) {
 ```js
 const grayLevel = arr[0] * 0.299 + arr[1] * 0.587 + arr[2] * 0.114;
 if (grayLevel >= 210) {
-    ...
+  ...
 }
 ```
 
@@ -517,6 +520,7 @@ onMounted(() => {
   </el-input>
 
 ```
+
 ```js
 import { reactive, ref, watch } from 'vue';
 import { ElMessage } from 'element-plus';
@@ -580,193 +584,210 @@ watch(
 );
 </script>
 ```
+
 ## 列表点击按钮进行上下滚动
+
 ```js
 // 滚动效果
 easeInQuad(curtime, begin, end, duration) {
-  let x = curtime / duration; //x值
-  let y = x * x; //y值
-  return begin + (end - begin) * y; //套入最初的公式
-},
-easeOutQuad(curtime, begin, end, duration) {
-  let x = curtime / duration;         //x值
-  let y = -x * x + 2 * x;  //y值
-  return begin + (end - begin) * y;        //套入最初的公式
-},
-easeInoutQuad(curtime, begin, end, duration) {
-  if (curtime < duration / 2) { 
-     //前半段时间,改变量和时间都除以2
-    return this.easeInQuad(curtime,begin, (begin + end) / 2, duration / 2);
-  } else {
-    //注意时间要减去前半段时间
-    let curtime1 = curtime - duration / 2; 
-    //初始量要加上前半段已经完成的
-    let begin1 = (begin + end) / 2;
-    //改变量和时间都除以2
-    return this.easeOutQuad(curtime1, begin1, end, duration / 2);
-  }
-},
-/**
- * 点击上下按钮进行滚动
- * @param action 类型，往上或者往下
- * @param elementId div的id和ref
- */
-handleClickScroll(action, elementId) {
-  let menuScroll = document.getElementById(elementId)
-  const {clientHeight, scrollHeight} = this.$refs[elementId]
-  // 每次滚动距离，等于div的高度
-  let dis = 400;
-  // 滚动时长
-  let duration = 500;
-  // 初始距离
-  let preX = 0;
-  let startTime = new Date().getTime();
-  let func = () => {
-    let nowTime = new Date().getTime();
-    let t = nowTime - startTime;
-    // 当时长大于500时，停止滚动
-    if (t > duration) {
-      return;
+    let x = curtime / duration; //x值
+    let y = x * x; //y值
+    return begin + (end - begin) * y; //套入最初的公式
+  },
+  easeOutQuad(curtime, begin, end, duration) {
+    let x = curtime / duration; //x值
+    let y = -x * x + 2 * x; //y值
+    return begin + (end - begin) * y; //套入最初的公式
+  },
+  easeInoutQuad(curtime, begin, end, duration) {
+    if (curtime < duration / 2) {
+      //前半段时间,改变量和时间都除以2
+      return this.easeInQuad(curtime, begin, (begin + end) / 2, duration / 2);
+    } else {
+      //注意时间要减去前半段时间
+      let curtime1 = curtime - duration / 2;
+      //初始量要加上前半段已经完成的
+      let begin1 = (begin + end) / 2;
+      //改变量和时间都除以2
+      return this.easeOutQuad(curtime1, begin1, end, duration / 2);
     }
-    let s = this.easeInoutQuad(t, 0, dis, duration);
-    // console.log('s', s)
-    // 每次滚动距离
-    let x = s - preX;
-    preX = s;
-    if (action === 'up') {
-      //上面没有内容了就禁用向上的按钮
-      if (menuScroll.scrollTop === 0) {
-        if (elementId === 'identifyItem') {
-          this.identifyUpDisabled = true
-        } else {
-          this.aimUpDisabled = true
-        }
-      } else {
-        //解锁向下的按钮
-        if (elementId === 'identifyItem') {
-          this.identifyDownDisabled = false
-        } else {
-          this.aimDownDisabled = false
-        }
-        // 向上滚动
-        menuScroll.scrollTop -= x
-      }
-    } else if (action === 'down') {
-      //下面没有内容了就禁用向下的按钮
-      if (menuScroll.scrollTop + clientHeight >= scrollHeight) {
-        if (elementId === 'identifyItem') {
-          this.identifyDownDisabled = true
-        } else {
-          this.aimDownDisabled = true
-        }
+  },
+  /**
+   * 点击上下按钮进行滚动
+   * @param action 类型，往上或者往下
+   * @param elementId div的id和ref
+   */
+  handleClickScroll(action, elementId) {
+    let menuScroll = document.getElementById(elementId)
+    const {
+      clientHeight,
+      scrollHeight
+    } = this.$refs[elementId]
+    // 每次滚动距离，等于div的高度
+    let dis = 400;
+    // 滚动时长
+    let duration = 500;
+    // 初始距离
+    let preX = 0;
+    let startTime = new Date().getTime();
+    let func = () => {
+      let nowTime = new Date().getTime();
+      let t = nowTime - startTime;
+      // 当时长大于500时，停止滚动
+      if (t > duration) {
         return;
-      } else {
-        //解锁向上的按钮
-        if (elementId === 'identifyItem') {
-          this.identifyUpDisabled = false
-        } else {
-          this.aimUpDisabled = false
-        }
-        // 向下滚动
-        menuScroll.scrollTop += x
       }
+      let s = this.easeInoutQuad(t, 0, dis, duration);
+      // console.log('s', s)
+      // 每次滚动距离
+      let x = s - preX;
+      preX = s;
+      if (action === 'up') {
+        //上面没有内容了就禁用向上的按钮
+        if (menuScroll.scrollTop === 0) {
+          if (elementId === 'identifyItem') {
+            this.identifyUpDisabled = true
+          } else {
+            this.aimUpDisabled = true
+          }
+        } else {
+          //解锁向下的按钮
+          if (elementId === 'identifyItem') {
+            this.identifyDownDisabled = false
+          } else {
+            this.aimDownDisabled = false
+          }
+          // 向上滚动
+          menuScroll.scrollTop -= x
+        }
+      } else if (action === 'down') {
+        //下面没有内容了就禁用向下的按钮
+        if (menuScroll.scrollTop + clientHeight >= scrollHeight) {
+          if (elementId === 'identifyItem') {
+            this.identifyDownDisabled = true
+          } else {
+            this.aimDownDisabled = true
+          }
+          return;
+        } else {
+          //解锁向上的按钮
+          if (elementId === 'identifyItem') {
+            this.identifyUpDisabled = false
+          } else {
+            this.aimUpDisabled = false
+          }
+          // 向下滚动
+          menuScroll.scrollTop += x
+        }
 
+      }
+      // 请求滚动
+      requestAnimationFrame(func)
     }
-    // 请求滚动
     requestAnimationFrame(func)
-  }
-  requestAnimationFrame(func)
-},
-/**
- * 鼠标滑轮滚动
- */
-scroll(e) {
-  const {id, scrollTop, clientHeight, scrollHeight} = e.target
-  //上面没有内容了就禁用向上的按钮
-  if (scrollTop === 0) {
-    if (id === 'identifyItem') {
-      this.identifyUpDisabled = true
+  },
+  /**
+   * 鼠标滑轮滚动
+   */
+  scroll(e) {
+    const {
+      id,
+      scrollTop,
+      clientHeight,
+      scrollHeight
+    } = e.target
+    //上面没有内容了就禁用向上的按钮
+    if (scrollTop === 0) {
+      if (id === 'identifyItem') {
+        this.identifyUpDisabled = true
+      } else {
+        this.aimUpDisabled = true
+      }
     } else {
-      this.aimUpDisabled = true
+      //解锁向上的按钮
+      if (id === 'identifyItem') {
+        this.identifyUpDisabled = false
+      } else {
+        this.aimUpDisabled = false
+      }
     }
-  } else{
-    //解锁向上的按钮
-    if (id === 'identifyItem') {
-      this.identifyUpDisabled = false
-    } else {
-      this.aimUpDisabled = false
-    }
-  }
 
-  //下面没有内容了就禁用向下的按钮
-  if (scrollTop + clientHeight >= scrollHeight) {
-    if (id === 'identifyItem') {
-      this.identifyDownDisabled = true
+    //下面没有内容了就禁用向下的按钮
+    if (scrollTop + clientHeight >= scrollHeight) {
+      if (id === 'identifyItem') {
+        this.identifyDownDisabled = true
+      } else {
+        this.aimDownDisabled = true
+      }
     } else {
-      this.aimDownDisabled = true
+      //解锁向下的按钮
+      if (id === 'identifyItem') {
+        this.identifyDownDisabled = false
+      } else {
+        this.aimDownDisabled = false
+      }
     }
-  } else  {
-    //解锁向下的按钮
-    if (id === 'identifyItem') {
-      this.identifyDownDisabled = false
+  },
+  updateButtonDisable(ref) {
+    const {
+      clientHeight,
+      scrollHeight
+    } = this.$refs[ref]
+    if (ref === 'identifyItem') {
+      const isDisable = clientHeight === scrollHeight ? true : false
+      this.identifyUpDisabled = isDisable
+      this.identifyDownDisabled = isDisable
     } else {
-      this.aimDownDisabled = false
+      const isDisable = clientHeight === scrollHeight ? true : false
+      this.aimUpDisabled = isDisable
+      this.aimDownDisabled = isDisable
     }
   }
-},
-updateButtonDisable(ref) {
-  const {clientHeight, scrollHeight} = this.$refs[ref]
-  if (ref === 'identifyItem') {
-    const isDisable = clientHeight === scrollHeight ? true : false
-    this.identifyUpDisabled = isDisable
-    this.identifyDownDisabled = isDisable
-  } else {
-    const isDisable = clientHeight === scrollHeight ? true : false
-    this.aimUpDisabled = isDisable
-    this.aimDownDisabled = isDisable
-  }
-}
 ```
+
 ## 动态计算标题图片高度
+
 ```js
 mounted() {
-  const that = this;
-  window.onresize = () => {
-    /*
+  const that = this;
+  window.onresize = () => {
+    /*
      * 动态计算标题图片高度，以免浏览器放大缩小导致图片变形。
      * 18是图片的宽除以高得出的值
      */
-    that.titleImgHeight.height = document.body.clientWidth / 18 + "px";
-  };
+    that.titleImgHeight.height = document.body.clientWidth / 18 + "px";
+  };
 }
 ```
 
 ## 避免冗长/丑陋的if/else语句
 
-### 1.字符串拼接
+### 1. 字符串拼接
+
 ```js
 function setAccType(accType) {
-    if (accType == "PLATINUM") {
-        return "Platinum Customer";
-    } else if (accType == "GOLD") {
-        return "Gold Customer";
-    } else if (accType == "SILVER") {
-        return "Silver Customer";
-    }
+  if (accType == "PLATINUM") {
+    return "Platinum Customer";
+  } else if (accType == "GOLD") {
+    return "Gold Customer";
+  } else if (accType == "SILVER") {
+    return "Silver Customer";
+  }
 }
 ```
 
 像这种条件和返回值有非常强的相关性的语句，通常我们就可以通过下面这种非常简洁的方式来处理，让多行秒变一行：
 
 ```js
-function setAccType(accType){
-    return accType[0] + accType.slice(1).toLowerCase() + ' Customer';
-    // or
-    return `${accType[0] + accType.slice(1).toLowerCase()} Customer`;
+function setAccType(accType) {
+  return accType[0] + accType.slice(1).toLowerCase() + ' Customer';
+  // or
+  return `${accType[0] + accType.slice(1).toLowerCase()} Customer`;
 }
 ```
 
-### 2.switch/case 语句也是比较常用的技巧，来看下面这个例子：
+### 2.switch/case 语句也是比较常用的技巧，来看下面这个例子
+
 ```js
 if (status === 200) {
   handleSuccess()
@@ -778,40 +799,45 @@ if (status === 200) {
   handleUnknownError()
 }
 ```
+
 像这样的，我们就可以通过 switch/case 来进行处理：
+
 ```js
-switch (status) {  
-    case 200:  
-        handleSuccess()  
-        break  
-    case 401:  
-        handleUnauthorized()  
-        break  
-    case 404:  
-        handleNotFound()  
-        break  
-    default:  
-        handleUnknownError()  
-        break  
+switch (status) {
+  case 200:
+    handleSuccess()
+    break
+  case 401:
+    handleUnauthorized()
+    break
+  case 404:
+    handleNotFound()
+    break
+  default:
+    handleUnknownError()
+    break
 }
 ```
+
 虽然多了几行代码，但避免了一次又一次的重复的全等检查，而且整体上更精简、直观。
 
 ### 3. 使用对象映射
+
 ```js
 const statusColors = {
-    success: 'green',
-    warning: 'yellow',
-    info: 'blue',
-    error: 'red'
+  success: 'green',
+  warning: 'yellow',
+  info: 'blue',
+  error: 'red'
 };
 
 function getStatusColor(status) {
-    return statusColors[status] || '';
+  return statusColors[status] || '';
 }
 ```
 
-### 4.使用include
+### 4. 使用include
+
 ```js
 function test(fruit, quantity) {
   const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
@@ -843,8 +869,8 @@ test('apple', 20); // red, big quantity
 function test(fruit, quantity) {
   const redFruits = ['apple', 'strawberry', 'cherry', 'cranberries'];
 
-  if (!fruit) throw new Error('No fruit!'); 
-  if (!redFruits.includes(fruit)) return; 
+  if (!fruit) throw new Error('No fruit!');
+  if (!redFruits.includes(fruit)) return;
 
   console.log('red');
 
@@ -855,64 +881,68 @@ function test(fruit, quantity) {
 ```
 
 ## 树形数据，输入节点名称，返回完整路径
+
 ```js
 function findPath(data, target) {
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].name === target) {
-                return data[i].name.split('-').reverse().join('-');
-            } else if (data[i].children) {
-                let result = findPath(data[i].children, target);
-                if (result) {
-                    return data[i].name + '-' + result;
-                }
-            }
-        }
-        return null;
-    }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].name === target) {
+      return data[i].name.split('-').reverse().join('-');
+    } else if (data[i].children) {
+      let result = findPath(data[i].children, target);
+      if (result) {
+        return data[i].name + '-' + result;
+      }
+    }
+  }
+  return null;
+}
 
-
-    const treeData = [
-        {
-            name: '贵州',
-            children: [
-                {
-                    name: '贵阳',
-                    children: [{
-                        name: '张三'
-                    }]
-                },
-                {
-                    name: '遵义',
-                    children: [{
-                        name: '李四'
-                    }]
-                }
-            ]
-        }
-    ];
-    console.log('222', findPath(treeData, '张三')) 
-    console.log('333', findPath(treeData, '李四')) 
+const treeData = [{
+  name: '贵州',
+  children: [{
+      name: '贵阳',
+      children: [{
+        name: '张三'
+      }]
+    },
+    {
+      name: '遵义',
+      children: [{
+        name: '李四'
+      }]
+    }
+  ]
+}];
+console.log('222', findPath(treeData, '张三'))
+console.log('333', findPath(treeData, '李四'))
 ```
 
 ### 错误提示："getActivePinia()" was called but there was no active Pinia. Are you trying
-需要在函数内部进行`useStore()`
+
+需要在函数内部进行 `useStore()`
+
 ```js
-import { useStore } from '@/stores'
+import {
+  useStore
+} from '@/stores'
 
 /**
  * 控制返回键的显示
  */
-export const useToggleShowBack = (to:RouteLocationNormalized) => {
-    const store = useStore()
-    store.isShowBack = (to.matched[0].props.default as any).showBack
+export const useToggleShowBack = (to: RouteLocationNormalized) => {
+  const store = useStore()
+  store.isShowBack = (to.matched[0].props.default as any).showBack
 }
 ```
-需要把`const store = useStore()` 放在函数内部
 
-参考：https://blog.csdn.net/z750467878/article/details/132289194
+需要把 `const store = useStore()` 放在函数内部
+
+参考：<https://blog.csdn.net/z750467878/article/details/132289194>
 
 ## ts提示不存在某个属性
+
 使用类型断言
+
 ```ts
 export const useToggleShowBack = (to:RouteLocationNormalized) => {
     const store = useStore()
@@ -924,37 +954,42 @@ export const useToggleShowBack = (to:RouteLocationNormalized) => {
 ```
 
 ## 动态路由
+
 ```js
 {
-    path: '/taskForm/:id',
-    name: 'taskForm',
-    props: {
-      //顶部是否显示返回按钮
-      showBack: true
-    },
-    component: taskForm,
-  }
+  path: '/taskForm/:id',
+  name: 'taskForm',
+  props: {
+    //顶部是否显示返回按钮
+    showBack: true
+  },
+  component: taskForm,
+}
 ```
 
-## 路由跳转提示 [Vue Router warn]: Path "/taskForm" was passed with params but they will be ignored. Use a named route alongside params instead.
+## 路由跳转提示 [Vue Router warn]: Path "/taskForm" was passed with params but they will be ignored. Use a named route alongside params instead
+
 改为命名路由跳转
+
 ```js
 router.push({
-        name:'taskForm',
-        params:{
-            id:id
-        }
-    })
+  name: 'taskForm',
+  params: {
+    id: id
+  }
+})
 ```
 
 ## 动态路由跳转时不传参数提示Missing required param "id"
-因为id是必传的，但是跳转的时候没有传id，在path的最后添加一个`?`即可把id改为非必传
+
+因为id是必传的，但是跳转的时候没有传id，在path的最后添加一个 `?` 即可把id改为非必传
+
 ```js
   //农户信息表单
   {
     path: '/farmersInfo/farmersForm/:id?',
     name: 'farmersForm',
-    props:{
+    props: {
       //顶部是否显示返回按钮
       showBack: true,
     },
@@ -963,141 +998,133 @@ router.push({
 ```
 
 ## echarts 图例 legend
+
 通过Legend可以展示不同系列数据的标识符号，如颜色、线型等。
 用户可以通过点击Legend中的项来显示或隐藏相应的系列数据。
 
 ## 获取用户设备信息(userAgent)
-``` js 
+
+```js
 let deviceName = ref('')
 let os = ref('')
 const ua = navigator.userAgent;
 const getUserAgent = () => {
-    if (/iPhone/.test(ua)) {
-        deviceName.value = "iPhone";
-        if (/CPU iPhone OS (\d+_\d+)/.test(ua)) {
-            os.value = "iOS " + RegExp.$1.replace("_", ".");
-        }
-    } else if (/Android/.test(ua)) {
-        const systemRegex = /Android\s(\d+)/;
-        const modelRegex = /(\w+)\sBuild/;
-
-        const systemMatch = ua.match(systemRegex);
-        const modelMatch = ua.match(modelRegex);
-
-        const system = `Android ${systemMatch?.[1]}`  ||'Unknown';
-        const model = modelMatch?.[1] ||'Unknown';
-        deviceName.value = system;
-        os.value = model;
-    } else {
-        deviceName.value = "Unknown";
-        os.value = "Unknown";
+  if (/iPhone/.test(ua)) {
+    deviceName.value = "iPhone";
+    if (/CPU iPhone OS (\d+_\d+)/.test(ua)) {
+      os.value = "iOS " + RegExp.$1.replace("_", ".");
     }
+  } else if (/Android/.test(ua)) {
+    const systemRegex = /Android\s(\d+)/;
+    const modelRegex = /(\w+)\sBuild/;
 
-    console.log("Device Name: " + deviceName.value);
-    console.log("Operating System: " + os.value);
+    const systemMatch = ua.match(systemRegex);
+    const modelMatch = ua.match(modelRegex);
+
+    const system = `Android ${systemMatch?.[1]}` || 'Unknown';
+    const model = modelMatch?.[1] || 'Unknown';
+    deviceName.value = system;
+    os.value = model;
+  } else {
+    deviceName.value = "Unknown";
+    os.value = "Unknown";
+  }
+
+  console.log("Device Name: " + deviceName.value);
+  console.log("Operating System: " + os.value);
 }
 ```
 
 ## 高德地图使用
+
 ```js
  // AMapLoader => 加载器
-    // 资源加载完成后就会触发 then
-    AMapLoader.load({
-        "key": "", // 申请好的Web端开发者Key，首次调用 load 时必填
-        "version": "2.0",   // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
-        "plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
-    }).then((AMap) => {
-        // 初始化地图
-        map = new AMap.Map('map', {
-            // 配置对象 - 配置地图的风格和缩放比例，请移步 2.2
-            zoom: 12,
-            //定位成功后是否自动调整地图视野到定位点
-            zoomToAccuracy: true,
-            //是否使用高精度定位，默认:true
-            enableHighAccuracy: true
-        });
-    }).catch(e => {
-        console.log(e);
-    });
+ // 资源加载完成后就会触发 then
+ AMapLoader.load({
+   "key": "", // 申请好的Web端开发者Key，首次调用 load 时必填
+   "version": "2.0", // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
+   "plugins": [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+ }).then((AMap) => {
+   // 初始化地图
+   map = new AMap.Map('map', {
+     // 配置对象 - 配置地图的风格和缩放比例，请移步 2.2
+     zoom: 12,
+     //定位成功后是否自动调整地图视野到定位点
+     zoomToAccuracy: true,
+     //是否使用高精度定位，默认:true
+     enableHighAccuracy: true
+   });
+ }).catch(e => {
+   console.log(e);
+ });
 ```
+
 ```js
 AMapLoader.load({
-        "key": "", // 申请好的Web端开发者Key，首次调用 load 时必填
-        "version": "2.0",   // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
-        "plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
-    }).then((AMap) => {
-        map = new AMap.Map("map", {
-            resizeEnable: true,
-        });
-        AMap.plugin("AMap.Geolocation", function () {
-            var geolocation = new AMap.Geolocation({
-                enableHighAccuracy: true, // 是否使用高精度定位，默认:true
-                timeout: 10000, // 超过10秒后停止定位，默认：无穷大
-                maximumAge: 60 * 24 * 60 * 60 * 1000, // 定位结果缓存0毫秒，默认：0
-                convert: true, // 自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-                showButton: true, // 显示定位按钮，默认：true
-                buttonPosition: "LB", // 定位按钮停靠位置，默认：'LB'，左下角
-                buttonOffset: new AMap.Pixel(20, 20), // 定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-                showMarker: true, // 定位成功后在定位到的位置显示点标记，默认：true
-                showCircle: false, // 定位成功后用圆圈表示定位精度范围，默认：true
-                panToLocation: true, // 定位成功后将定位到的位置作为地图中心点，默认：true
-                zoomToAccuracy: true, // 定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-            });
-            map.addControl(geolocation);
-            geolocation.getCurrentPosition(function (status, result) {
-                if (status == "complete") {
-                    onComplete(result);
-                } else {
-                    onError(result);
-                }
-            });
-            arr.forEach((item) => {
-                let circle = new AMap.Circle({
-                    center: [item.lng, item.lat],
-                    radius: item.r, //签到范围半径
-                    borderWeight: 1,
-                    strokeOpacity: 0.2,
-                    fillOpacity: 0.4,
-                });
-                circle.setMap(map);
-                map.setFitView([circle]);
-            });
-
-            map.plugin(["AMap.CircleEditor"], function () {
-                const circleEditor = new AMap.CircleEditor(map, circle);
-                circleEditor.open();
-            });
-        });
-    }).catch(e => {
-        console.log(e);
+  "key": "", // 申请好的Web端开发者Key，首次调用 load 时必填
+  "version": "2.0", // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
+  "plugins": [], // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+}).then((AMap) => {
+  map = new AMap.Map("map", {
+    resizeEnable: true,
+  });
+  AMap.plugin("AMap.Geolocation", function() {
+    var geolocation = new AMap.Geolocation({
+      enableHighAccuracy: true, // 是否使用高精度定位，默认:true
+      timeout: 10000, // 超过10秒后停止定位，默认：无穷大
+      maximumAge: 60 * 24 * 60 * 60 * 1000, // 定位结果缓存0毫秒，默认：0
+      convert: true, // 自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+      showButton: true, // 显示定位按钮，默认：true
+      buttonPosition: "LB", // 定位按钮停靠位置，默认：'LB'，左下角
+      buttonOffset: new AMap.Pixel(20, 20), // 定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+      showMarker: true, // 定位成功后在定位到的位置显示点标记，默认：true
+      showCircle: false, // 定位成功后用圆圈表示定位精度范围，默认：true
+      panToLocation: true, // 定位成功后将定位到的位置作为地图中心点，默认：true
+      zoomToAccuracy: true, // 定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
     });
-```
+    map.addControl(geolocation);
+    geolocation.getCurrentPosition(function(status, result) {
+      if (status == "complete") {
+        onComplete(result);
+      } else {
+        onError(result);
+      }
+    });
+    arr.forEach((item) => {
+      let circle = new AMap.Circle({
+        center: [item.lng, item.lat],
+        radius: item.r, //签到范围半径
+        borderWeight: 1,
+        strokeOpacity: 0.2,
+        fillOpacity: 0.4,
+      });
+      circle.setMap(map);
+      map.setFitView([circle]);
+    });
 
-## vscode关闭no-console提示
-
-`eslint.config.js`
-```js
-const antfu = require('@antfu/eslint-config').default
-
-module.exports = antfu(
-  {},
-  {
-    rules: {
-      'no-console': 'off',
-    },
-  },
-)
+    map.plugin(["AMap.CircleEditor"], function() {
+      const circleEditor = new AMap.CircleEditor(map, circle);
+      circleEditor.open();
+    });
+  });
+}).catch(e => {
+  console.log(e);
+});
 ```
 
 ## input file上传了一次文件，第二次上传相同的文件不会触发onchage
 
-```<input ref="fileInput" type="file" accept="image/*" @change="handleFileChange">```
+```vue
+<template>
+  <input ref="fileInput" type="file" accept="image/*" @change="handleFileChange">
+</template>
+```
 
 这是因为浏览器默认情况下不会触发相同文件的选择事件。这是为了防止用户在意外情况下重复选择同一个文件。
 如果你希望能够再次选择相同的文件并触发change事件，你可以在每次选择文件后，
 将文件输入框的值设为一个空字符串，然后再次选择相同的文件。这样可以绕过浏览器的默认限制，从而触发change事件。
 
-例如，在`handleFileChange`方法中，你可以添加以下代码：
+例如，在 `handleFileChange` 方法中，你可以添加以下代码：
 
 ```js
 handleFileChange(event) {
@@ -1111,116 +1138,73 @@ handleFileChange(event) {
 
 ## 移动端h5拨打电话
 
-`<head>`里面加上：`<meta name="format-detection" content="telephone=yes"/> `
-需要拨打电话的地方：`<a href="tel:400-0000-688">400-0000-688</a>`
+`<head>` 里面加上： `<meta name="format-detection" content="telephone=yes"/>`
 
-## dayjs使用
-```js
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import dayjs from 'dayjs'
-dayjs.extend(customParseFormat)
-
-dayjs('10:00:00', 'HH:mm:ss').format('HH:mm')//10:00
-```
-
-https://day.js.org/docs/zh-CN/parse/string-format
-
-## 子组件监听props的变化
-
-```vue
-const props = defineProps<{
-  value: string
-}>()
-
-const relationship = ref(props.value)
-```
-`props.value`并不是响应式的数据。当父组件中的`relationship`发生变化时，`props.value`并不会自动更新
-因此`watch`监听不到变化。
-
-要使子组件能够监听到`props.value`的变化，可以使用`toRef()`函数将`props.value`转换为响应式数据。修改子组件代码如下：
-`const relationship = toRef(props, 'value')`
+需要拨打电话的地方： `<a href="tel:400-0000-688">400-0000-688</a>`
 
 ## formData多次添加了相同的键，需要全部查询出来
+
 如果您多次向fileData的value属性中添加了相同的键（在这里是'files'），并且您想要取出这两个文件，您可以使用以下方法：
+
 ```js
-for (const [key, value] of fileData.value.entries()) {  
-    if (key === 'files') {  
-        console.log(value); // 这里是文件对象  
-    }  
+for (const [key, value] of fileData.value.entries()) {
+  if (key === 'files') {
+    console.log(value); // 这里是文件对象  
+  }
 }
 ```
 
-
 ## 请求接口提示"Content type 'application/octet-stream' not supported"
-https://blog.csdn.net/lovezhuer1/article/details/122436791
+
+<https://blog.csdn.net/lovezhuer1/article/details/122436791>
 由错误描述可知，我们这里不能传一个json字符串，而是一个二进制，
 这时需要使用 Blob() 构造函数将 json 字符串转化为 Blob 对象（Blob 对象表示一个不可变、原始数据的类文件对象，
 它的数据可以按文本或二进制的格式进行读取）放到 formData 中
 请求头设置：
+
 ```js
 headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-const formData = ref(new FormData())
+    'Content-Type': 'multipart/form-data',
+  },
+  const formData = ref(new FormData())
 const json = JSON.stringify(values)
-  const blob = new Blob([json], {
- 	type: 'application/json',
-  })
-  formData.value.append('feedbackVo', blob)
-```
-
-## dayjs计算间隔时间
-```js
-import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
-dayjs.extend(duration)
-
-/** 计算时间间隔 */
-function calculateTimeInterval(startTime: string, endTime: string) {
-  if (!dayjs(startTime, 'YYYY-MM-DD HH:mm:ss', true).isValid() || !dayjs(endTime, 'YYYY-MM-DD HH:mm:ss', true).isValid())
-    return `0分钟`
-
-  const diff = dayjs(endTime).diff(dayjs(startTime))
-  const duration = (dayjs as any).duration(diff)
-  // 将间隔格式化为小时和分钟
-  const hours = Math.floor(duration.asHours())
-  const minutes = Math.floor((duration.asMinutes() % 60)) // 取余数得到分钟数
-  return `${hours}小时${minutes}分钟`
-}
-```
-
-
-## dayjs 判断日期是否为有效格式的日期
-```js
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-// 自定义格式化插件
-dayjs.extend(customParseFormat)
-
-dayjs(startTime, 'YYYY-MM-DD HH:mm:ss', true).isValid()
+const blob = new Blob([json], {
+  type: 'application/json',
+})
+formData.value.append('feedbackVo', blob)
 ```
 
 ## 把文件流转换为url用于img显示
+
  使用URL.createObjectURL()方法来创建一个指向该Blob对象的URL
- ```js
+
+```js
 downloadFile(paramsPm).then((res) => {
   console.log('🚀 ~ file: statistics.vue:120 ~ downloadFile ~ res:', res)
   const url = URL.createObjectURL(res)
   clockInfo.value.clockPmPhoto = url
 })
 ```
+
 ## 文件流转base64
+
 ```js
  const base64String = btoa(
-          new Uint8Array(res)
-            .reduce((data, byte) => data + String.fromCharCode(byte), ''),
-        )
+   new Uint8Array(res)
+   .reduce((data, byte) => data + String.fromCharCode(byte), ''),
+ )
 
-        // 输出Base64编码
-        console.log(base64String)
-        // 下面生成的base64拼接可以直接放到<img src="放在这儿直接展示"/>
-        formModel.value.files.push({ url: `data:image/jpeg;base64,${base64String}`, id: item.id })
+ // 输出Base64编码
+ console.log(base64String)
+ // 下面生成的base64拼接可以直接放到<img src="放在这儿直接展示"/>
+ formModel.value.files.push({
+   url: `data:image/jpeg;base64,${base64String}`,
+   id: item.id
+ })
 ```
+
 ## style 使用v-bind绑定响应式变量
+
 ```vue
 const clockAtColor = ref('')
 clockAtColor.value = formModel.value.clockAt === '无' ? '#969799' : '#000'
@@ -1232,43 +1216,11 @@ clockAtColor.value = formModel.value.clockAt === '无' ? '#969799' : '#000'
 </style>
 ```
 
-## 将时间转换为 `刚刚`、`几秒前`、`几分钟前`、`几小时前`、`几天前`、几月前
-```js
-import dayjs from 'dayjs';
-
-function timeAgo(date, format = null) {
-const now = dayjs();
-const ago = dayjs.unix(date);
-
-const diff = now.diff(ago, 'second');
-
-if (format) {
-return ago.format(format);
-}
-
-const units = [
-[60, '秒', 1],
-[60, '分钟', 60],
-[24, '小时', 3600],
-[7, '天', 86400],
-[30.44, '个月', 2592000], // Approximation for month length
-[12, '年', 31104000] // Approximation for year length
-];
-
-for (const [interval, label, factor] of units) {
-if (diff < interval) {
-return Math.round(diff / factor) + label + '前';
-}
-}
-
-// If the difference is greater than a year, return formatted date
-return ago.format('YYYY-MM-DD');
-} console.log(timeAgo(<your_timestamp>));这样是不是更优雅一些
-```
 ## 把src/icons/svg下的所有图片名称做成一个数组
+
 ```js
 import Vue from 'vue'
-import SvgIcon from '@/components/SvgIcon'// svg component
+import SvgIcon from '@/components/SvgIcon' // svg component
 
 // register globally
 Vue.component('svg-icon', SvgIcon)
@@ -1278,39 +1230,42 @@ const requireAll = requireContext => requireContext.keys().map(requireContext)
 requireAll(req)
 
 let svgNameList = []
+
 function getSvgNameList() {
-/** 把src/icons/svg下的所有图片名称做成一个数组 */
+  /** 把src/icons/svg下的所有图片名称做成一个数组 */
   svgNameList = requireAll(req).map(item => item.default.id?.slice(5))
 }
 getSvgNameList()
 export default svgNameList
-``` 
-
-## vscode返回上一次编辑的地方
-alt+←
+```
 
 ## 解码数组内每个对象的值
 
+```JS
 // 遍历数组并解码每个对象的属性值
 const decodedArr = arr.map(item => {
   const decodedItem = {};
   for (let key in item) {
+
     if (typeof item[key] === 'string') {
       decodedItem[key] = decodeURIComponent(item[key]);
     } else {
       // 如果不是字符串类型，则直接复制原值
       decodedItem[key] = item[key];
     }
+
   }
   return decodedItem;
 });
 
 console.log(decodedArr);
+```
 
 ## 合并两个数组
+
 ```js
 function mapDataIndices(sourceArray, templateArray) {
-  return templateArray.map((item,index) => ({
+  return templateArray.map((item, index) => ({
     ...item,
     dataIndex: sourceArray[index].data
   }));
@@ -1321,14 +1276,340 @@ const newArray = mapDataIndices(sourceArray, templateArray);
 
 console.log(newArray);
 ```
-## fullcalendar使用
 
-### 安装
+## 压缩图片，且不让图片失真
 
-```sh
-pnpm add 
-@fullcalendar/vue3 
-@fullcalendar/core 
-@fullcalendar/daygrid 
-@fullcalendar/interaction
+```js
+/**
+ * 压缩图片
+ * @param file
+ * @returns file
+ */
+export function compressImg(file) {
+  return new Promise((resolve) => {
+    // console.log('🚀 ~ compressImg ~ file:', file)
+    const MAX_WIDTH = 1200
+    const MAX_HEIGHT = 1000
+    const QUALITY = 0.9
+    /** 文件流转dataUrl */
+    const blobURL = URL.createObjectURL(file.file)
+    const img = new Image()
+    img.src = blobURL
+    img.onerror = function() {
+      URL.revokeObjectURL(blobURL)
+      console.log('无法加载图像')
+    }
+    img.onload = function() {
+      URL.revokeObjectURL(blobURL)
+      const [newWidth, newHeight] = calculateSize(
+        img,
+        MAX_WIDTH,
+        MAX_HEIGHT,
+      )
+      const canvas = document.createElement('canvas')
+      canvas.width = newWidth
+      canvas.height = newHeight
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, newWidth, newHeight)
+      const dataUrl = canvas.toDataURL(file.file.type, QUALITY)
+      const files = dataURLtoFile(dataUrl, file.file.name)
+      // console.log('🚀 ~ returnnewPromise ~ files:', files)
+      resolve(files)
+    }
+  })
+}
+
+/** 将base64（dataUrl）转换为file文件 */
+function dataURLtoFile(dataurl, filename) {
+  // console.log('🚀 ~ dataURLtoFile ~ dataurl:', dataurl)
+  const arr = dataurl.split(',')
+  const mime = arr[0].match(/:(.*?);/)[1]
+  const bstr = atob(arr[1])
+  let n = bstr.length
+  const u8arr = new Uint8Array(n)
+  while (n--)
+    u8arr[n] = bstr.charCodeAt(n)
+
+  return new File([u8arr], filename, {
+    type: mime
+  })
+}
+
+/** 重新计算图片尺寸 */
+function calculateSize(img, maxWidth, maxHeight) {
+  let width = img.width
+  let height = img.height
+
+  if (width > height) {
+    if (width > maxWidth) {
+      height = Math.round((height * maxWidth) / width)
+      width = maxWidth
+    }
+  } else {
+    if (height > maxHeight) {
+      width = Math.round((width * maxHeight) / height)
+      height = maxHeight
+    }
+  }
+  return [width, height]
+}
+```
+
+## 格式化数字为 2.00的格式
+
+```js
+/** 格式化数字为 2.00的格式 */
+export function formatNumber(num) {
+  const strNum = num.toString();
+  const hasDecimal = strNum.includes('.');
+
+  // 如果数字没有小数部分或者小数部分只有一位，使用toFixed()添加零  
+  if (!hasDecimal || (strNum.split('.')[1] || '').length === 1) {
+    return num.toFixed(2);
+  }
+
+  // 如果小数部分已经有两位或更多，直接返回原始字符串  
+  return strNum;
+}
+```
+
+## axios，拦截器返回完整的response
+
+需求：导出文件返回文件流时需要返回整个文件流，如果http层500则是有错误，不允许导出。
+解决方案： `config` 里可以传个标识，然后在封装的 `request` 文件里判断需要返回完整的response。
+
+```JS
+// 请求接口
+import request from "@/utils/request";
+/**
+ * 导出
+ */
+export function exportApi() {
+  return request({
+    url: "/export",
+    method: "POST",
+    responseType: 'blob',
+    /** 是否返回完整的响应体 */
+    isReturnNativeResponse: true
+  });
+}
+```
+
+```JS
+// @/utils/request
+// 返回拦截器
+service.interceptors.response.use(
+  (response) => {
+    /** 是否返回完整的响应体,用于下载文件流时判断状态 */
+    const isReturnNativeResponse = response.config?.isReturnNativeResponse;
+    return isReturnNativeResponse ? response : response.data;
+  }
+);
+```
+
+## 导出文件，但是后端会返回文件流或者json
+
+后端成功时返回文件流，失败时返回报错信息
+
+1、首先接口要返回整个 `response` ；
+
+2、处理后端代码报错的情况，对http层500进行判断；
+
+3、处理后端自定义异常捕获的报错，例如 `status` 为 `-1` 的报错；
+
+4、没有错误了就正常导出。
+
+```JS
+// 请求接口文件
+import request from "@/utils/request";
+/**
+ * 导出
+ */
+export function exportApi() {
+  return request({
+    url: "/export",
+    method: "POST",
+    responseType: 'blob',
+    /** 是否返回完整的响应体 */
+    isReturnNativeResponse: true
+  });
+}
+```
+
+* 如果返回json，说明有报错信息。这种是后端的自定义错误捕获
+* 因为接口文件设置了 `responseType: 'blob'` ，所以需要使用 `blob` 接口的 `text` 方法转换
+* `Blob` 接口的 `text` 方法返回一个 `Promise`，其会兑现一个包含 `blob` 内容的 `UTF-8` 格式的字符串。
+
+```js
+/** 
+ * 下载文件，封装了错误处理。
+ * 要求：
+ * 1、请求头content-disposition要返回filename；
+ * 2、在请求接口处需要设置`isReturnNativeResponse:true`
+ * @param {*} res 请求接口返回的整个response
+ */
+export function handleDownloadResponse(res) {
+  if (!res || !res.data || !res.headers) {
+    Message({
+      message: "无效的响应数据。",
+      type: "error"
+    });
+    return;
+  }
+  // 外层500，后端代码报错
+  if (res.status !== 200) {
+    Message({
+      message: res.message || "下载失败",
+      type: "error"
+    });
+    return;
+  }
+  // 检查响应头是否存在content-disposition，并且其中包含filename
+  if (!res.headers['content-disposition'] || !res.headers['content-disposition'].includes('filename=')) {
+    Message({
+      message: "响应头部缺少必要的文件名信息。",
+      type: "error"
+    });
+    return;
+  }
+  /** 可以下载的类型是blob，json是有报错 */
+  if (res.data.type === "application/json") {
+    /** 返回是blob，需要用text方法转换为文本 */
+    res.data
+      .text()
+      .then((text) => {
+        const response = JSON.parse(text);
+        Message({
+          message: `下载失败，提示：${response.message}`,
+          type: "error"
+        });
+      })
+      .catch((e) => {
+        console.error("Error parsing the error message:", e);
+      });
+    return;
+  }
+  const {
+    data,
+    headers
+  } = res;
+  // 解码文件名称
+  const fileName = decodeURIComponent(headers["content-disposition"].split("filename=")[1]);
+  downloadByData(data, fileName);
+  Message({
+    message: "下载文件成功",
+    type: "success"
+  });
+}
+
+// 请求接口
+exportApi()
+  .then((res) => {
+    handleDownloadResponse(res)
+  })
+```
+
+## JSDOC 标注类型
+
+```JS
+import request from "@/utils/request";
+/** 统一返回结构体 */
+/**
+ * @template T
+ * @typedef {Object} RequestBody
+ * @property {0|-1} status 状态 0：成功，-1：有异常
+ * @property { T } data 数据
+ * @property { string } message 消息 
+ */
+
+/**
+ * @typedef {Object} StatisticsResult 统计接口返回
+ * @property {string} name 区域名称
+ * @property {number} amount 总数
+ */
+/**
+ * 统计
+ * @param {Object} params 
+ * @param {string} params.comCode 区域代码
+ * @param {string} params.postType 岗位类型
+ * @returns {Promise<RequestBody<StatisticsResult[]>>}
+ */
+export function statisticsApi(params) {
+  return request({
+    url: "/statistics",
+    method: "GET",
+    params
+  });
+}
+```
+
+## 过滤角色对应路由
+
+```js
+/**
+ * 根据postListCode判断有没有路由权限
+ * @param postListCode 
+ * @param route
+ */
+function hasPermission(postListCode, route) {
+  if (route.meta?.roles) {
+    return route.meta.roles.includes(postListCode);
+  } else {
+    return true;
+  }
+}
+
+/**
+ * 过滤角色对应路由
+ * @param routes asyncRoutes
+ * @param roles
+ */
+export function filterAsyncRoutes(routes, postListCode) {
+  const res = [];
+  routes.forEach((route) => {
+    const tmp = {
+      ...route
+    };
+    if (hasPermission(postListCode, tmp)) {
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, postListCode);
+      }
+      res.push(tmp);
+    }
+  });
+  return res;
+}
+```
+
+## 将多级路由转换为一级路由
+
+因为嵌套路由 `keep-alive` 不了，所以把所以的路由都转为一级路由
+
+```js
+/**
+ * 将多级路由转换为一级路由
+ */
+export function flattenAllRoutes(routeModules) {
+  const modules = deepClone(routeModules);
+  const flattenedRoutes = [];
+
+  // 递归函数用于收集所有子路由
+  function collectRoutes(routes) {
+    routes.forEach(route => {
+      // 如果当前路由有子路由，递归收集子路由
+      if (route.children && route.children.length > 0) {
+        collectRoutes(route.children);
+      }
+      // 删除子路由，只保留当前路由
+      delete route.children;
+      // 添加当前路由到扁平化后的路由列表
+      flattenedRoutes.push(route);
+    });
+  }
+
+  // 从最外层开始收集所有路由
+  collectRoutes(modules);
+
+  return flattenedRoutes;
+}
 ```

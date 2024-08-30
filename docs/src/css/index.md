@@ -67,3 +67,9 @@ height: calc(100vh - 56px - 80px);
 	grid-template-columns: repeat(4, 1fr);
 }
 ```
+
+## 父容器 min-height:100%,子容器 height:100%,子容器继承不到父容器的高度
+父容器设置 display:grid;
+
+## css中英文混排 中文换行了
+word-break: break-all;

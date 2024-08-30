@@ -36,6 +36,7 @@ export default defineConfig({
                 {
                     text: 'TypeScript',
                     link: '/src/TypeScript/index',
+                    collapsed: true, //默认收起
                     items: [
                         { text: '类', link: '/src/TypeScript/01_类' },
                         { text: '数组', link: '/src/TypeScript/02_数组' },
@@ -47,6 +48,7 @@ export default defineConfig({
                         { text: '函数类型', link: '/src/TypeScript/08_函数类型' },
                         { text: '继承', link: '/src/TypeScript/09_继承' },
                         { text: '泛型', link: '/src/TypeScript/010_泛型' },
+                        { text: '工具方法', link: '/src/TypeScript/utils.md' },
                     ],
                 },
                 {
@@ -60,6 +62,22 @@ export default defineConfig({
                 {
                     text: 'vue',
                     link: '/src/vue/index',
+                }, 
+                {
+                    text: 'element-ui',
+                    link: '/src/element-ui/index',
+                }, 
+                {
+                    text: 'FullCalendar',
+                    link: '/src/FullCalendar/index',
+                }, 
+                {
+                    text: 'dayjs',
+                    link: '/src/dayjs/index',
+                }, 
+                {
+                    text: 'vscode',
+                    link: '/src/vscode/index',
                 }, 
                 {
                     text: 'React',
@@ -89,7 +107,7 @@ export default defineConfig({
         },
         // footer: {
         //     message: '如有转载或 CV 的请标注本站原文地址',
-        //     copyright: 'Copyright © 2019-present maomao'
+        //     copyright: 'Copyright © 2019-xxx'
         // },
     },
 })

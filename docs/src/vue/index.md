@@ -6,11 +6,11 @@
 
 ```js
 {
-    "presets": [
-        "@babel/preset-env",
-        "@vue/cli-plugin-babel/preset"
-    ],
-    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
+  "presets": [
+    "@babel/preset-env",
+    "@vue/cli-plugin-babel/preset"
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }
 ```
 
@@ -169,15 +169,15 @@ style.less用于配置全局的默认样式，也可以是默认主题或字体�
 ```js
 const path = require("path");
 module.exports = {
-    pluginOptions: {
-        "style-resources-loader": {
-            preProcessor: "less",
-            patterns: [
-                // 这个是加上自己的路径,不能使用(如下:alias)中配置的别名路径
-                path.resolve(__dirname, "./src/theme/style.less"),
-            ],
-        },
+  pluginOptions: {
+    "style-resources-loader": {
+      preProcessor: "less",
+      patterns: [
+        // 这个是加上自己的路径,不能使用(如下:alias)中配置的别名路径
+        path.resolve(__dirname, "./src/theme/style.less"),
+      ],
     },
+  },
 };
 ```
 
@@ -225,25 +225,25 @@ export default {
 
 ```js
 import {
-    themes
+  themes
 } from "./model";
 // 修改页面中的样式变量值
 const changeStyle = (obj) => {
-    for (let key in obj) {
-        document
-            .getElementsByTagName("body")[0]
-            .style.setProperty(`--${key}`, obj[key]);
-    }
+  for (let key in obj) {
+    document
+      .getElementsByTagName("body")[0]
+      .style.setProperty(`--${key}`, obj[key]);
+  }
 };
 // 改变主题的方法
 export const setTheme = (themeConfig) => {
-    localStorage.setItem("theme", themeConfig); // 保存主题到本地，下次进入使用该主题
-    //localStorage.getItem("primaryColor")
-    // let themeConfigObj = {
-    //     primaryColor: themeConfig.primaryColor,
-    //     primaryTextColor: localStorage.getItem("primaryTextColor"),
-    // };
-    changeStyle(themeConfig);
+  localStorage.setItem("theme", themeConfig); // 保存主题到本地，下次进入使用该主题
+  //localStorage.getItem("primaryColor")
+  // let themeConfigObj = {
+  //     primaryColor: themeConfig.primaryColor,
+  //     primaryTextColor: localStorage.getItem("primaryTextColor"),
+  // };
+  changeStyle(themeConfig);
 };
 ```
 
@@ -255,9 +255,9 @@ export const setTheme = (themeConfig) => {
 
 ```js
 "devDependencies": {
-    "less": "^2.7.2",
-    "less-loader": "^5.0.0",
-    "antd-theme-generator": "^1.2.5"
+  "less": "^2.7.2",
+  "less-loader": "^5.0.0",
+  "antd-theme-generator": "^1.2.5"
 },
 ```
 
@@ -266,28 +266,28 @@ export const setTheme = (themeConfig) => {
 ```js
 const path = require("path");
 const {
-    generateTheme
+  generateTheme
 } = require("antd-theme-generator");
 const options = {
-    antDir: path.join(__dirname, "./node_modules/ant-design-vue"), // antdv对应具体位置
-    stylesDir: path.join(__dirname, "./src/assets/styles/theme"), // less文件夹对应具体位置
-    varFile: path.join(__dirname, "./src/assets/styles/theme/variables.less"), // 文件夹变量对应具体位置
-    mainLessFile: path.join(__dirname, "./src/assets/styles/theme/index.less"),
-    themeVariables: [ // 指定所有我们自定义需要切换的样式变量
-        "@primary-color",
-        "@link-color",
-        "@border-color-base",
-    ],
-    indexFileName: "./public/index.html",
-    outputFilePath: path.join(__dirname, "./public/theme.less"), // 打包出来的文件
+  antDir: path.join(__dirname, "./node_modules/ant-design-vue"), // antdv对应具体位置
+  stylesDir: path.join(__dirname, "./src/assets/styles/theme"), // less文件夹对应具体位置
+  varFile: path.join(__dirname, "./src/assets/styles/theme/variables.less"), // 文件夹变量对应具体位置
+  mainLessFile: path.join(__dirname, "./src/assets/styles/theme/index.less"),
+  themeVariables: [ // 指定所有我们自定义需要切换的样式变量
+    "@primary-color",
+    "@link-color",
+    "@border-color-base",
+  ],
+  indexFileName: "./public/index.html",
+  outputFilePath: path.join(__dirname, "./public/theme.less"), // 打包出来的文件
 };
 generateTheme(options)
-    .then((less) => {
-        console.log("Theme generated successfully");
-    })
-    .catch((error) => {
-        console.log("Error", error);
-    });
+  .then((less) => {
+    console.log("Theme generated successfully");
+  })
+  .catch((error) => {
+    console.log("Error", error);
+  });
 ```
 
 ### 修改vue.config.js
@@ -295,16 +295,16 @@ generateTheme(options)
 ```js
 require("./theme.js");
 module.exports = {
-    css: {
-        loaderOptions: {
-            less: {
-                lessOptions: {
-                    modifyVars: {},
-                    javascriptEnabled: true,
-                },
-            },
+  css: {
+    loaderOptions: {
+      less: {
+        lessOptions: {
+          modifyVars: {},
+          javascriptEnabled: true,
         },
+      },
     },
+  },
 }
 ```
 
@@ -330,31 +330,31 @@ module.exports = {
 <html lang="">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
 </head>
 
 <body>
-    <noscript>
-        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-            Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-    <link rel="stylesheet/less" type="text/css" href="./theme.less" />
-    <script>
-        window.less = {
-            async: false,
-            env: 'production'
-        };
-    </script>
-    <!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>-->
-    <script type="text/javascript" src="./less.min.js"></script>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <link rel="stylesheet/less" type="text/css" href="./theme.less" />
+  <script>
+    window.less = {
+      async: false,
+      env: 'production'
+    };
+  </script>
+  <!--    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>-->
+  <script type="text/javascript" src="./less.min.js"></script>
 </body>
 
 </html>
@@ -364,7 +364,7 @@ module.exports = {
 
 ```js
 window.less.modifyVars({
-    "@primary-color": '#f5222d',
+  "@primary-color": '#f5222d',
 })
 ```
 
@@ -439,7 +439,7 @@ const defaultColorList = [
 </style>
 ```
 
-##  Ant Design Vue
+## Ant Design Vue
 
 ### select下拉框使用dropdownRender自定义下拉框内容
 
@@ -482,6 +482,7 @@ const VNodes = defineComponent({
 ```
 
 ### 样式穿透
+
 ```css
 .box :deep(.ant-slider-disabled .ant-slider-track) {
   background-color: yellow !important;
@@ -662,7 +663,6 @@ const selectItem = (index) => {
   </div>
 </template>
 
-
 <script setup>
 const evidenceInfo = [
   {
@@ -705,3 +705,23 @@ const toggleSelection = (jcbh) => {
 };
 </script>
 ```
+
+## 缓存iframe 页面
+
+<https://juejin.cn/post/6844903894783361032>
+
+## 子组件监听props的变化
+
+```js
+const props = defineProps < {
+  value: string
+} > ()
+
+const relationship = ref(props.value)
+```
+
+`props.value` 并不是响应式的数据。当父组件中的 `relationship` 发生变化时， `props.value` 并不会自动更新
+因此 `watch` 监听不到变化。
+
+要使子组件能够监听到 `props.value` 的变化，可以使用 `toRef()` 函数将 `props.value` 转换为响应式数据。修改子组件代码如下：
+ `const relationship = toRef(props, 'value')`
