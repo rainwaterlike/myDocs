@@ -1,5 +1,6 @@
 
 import { defineConfig } from 'vitepress'
+import { algolia } from './config/algolia'
 
 export default defineConfig({
     head: [
@@ -33,6 +34,30 @@ export default defineConfig({
         },
         sidebar: {
             '/': [
+                {
+                    text: 'JavaScript',
+                    link: '/src/JavaScript/',
+                },
+                {
+                    text: 'vue',
+                    link: '/src/vue/index',
+                }, 
+                {
+                    text: 'css',
+                    link: '/src/css/index',
+                },
+                {
+                    text: 'FullCalendar',
+                    link: '/src/FullCalendar/index',
+                },
+                {
+                    text: 'dayjs',
+                    link: '/src/dayjs/index',
+                },
+                {
+                    text: 'vscode',
+                    link: '/src/vscode/index',
+                },
                 {
                     text: 'TypeScript',
                     link: '/src/TypeScript/index',
@@ -101,6 +126,7 @@ export default defineConfig({
         returnToTopLabel: '返回顶部',
         lastUpdatedText: '上次更新',
         socialLinks: [{ icon: 'github', link: 'https://github.com/rainwaterlike/myDocs' }],
+        algolia,
         docFooter: {
             prev: '上一篇',
             next: '下一篇'

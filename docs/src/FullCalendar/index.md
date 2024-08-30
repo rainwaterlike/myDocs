@@ -1,17 +1,19 @@
-
 ## FullCalendar实战使用(vue3 + ts)
 
 ### 需求背景
+
 要求：
 
 1、日历可以单击选择日期，也可以按住左键拖动选择多个日期，像windows按住左键多选文件夹一样；
 
-2、顶部标题需要左右切换月份，中间显示日期，格式`YYYY年M月`，右侧可以选择月份；
+2、顶部标题需要左右切换月份，中间显示日期，格式 `YYYY年M月` ，右侧可以选择月份；
 
 3、左侧是日历，选择日期后在右侧提交表单，提交后在对应的日期上显示内容，点击日期上的内容则删除该日期的内容。
 
-项目使用的是`antd vue`组件库，日历组件不满足第一点要求，寻找了一遍后发现[fullcalendar](https://fullcalendar.io)这个库刚好符合要求
+项目使用的是 `antd vue` 组件库，日历组件不满足第一点要求，寻找了一遍后发现[fullcalendar](https://fullcalendar.io)这个库刚好符合要求
+
 ### 介绍
+
 FullCalendar，当下最受欢迎的全尺寸JavaScript日历
 FullCalendar的三大特点：
 
@@ -23,23 +25,24 @@ FullCalendar的三大特点：
 
 [文档地址](https://fullcalendar.io/docs#toc)
 
-
 ### 一、安装
 
 ```sh
 pnpm add @fullcalendar/vue3 @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction
 ```
 
-
 ### 二、实现需求
 
 #### 1、日历可以单击选择日期，也可以按住左键拖动选择多个日期，像windows按住左键多选文件夹一样；
-引入`interaction`插件后日历就可以选择了
+
+引入 `interaction` 插件后日历就可以选择了
+
 ```vue
 <template>
   <FullCalendar ref="fullCalendarRef" :options="calendarOptions" />
 </template>
 ```
+
 ```ts
 <script lang="ts" setup>
 import { Ref } from 'vue';
@@ -55,30 +58,37 @@ const calendarOptions: Ref<CalendarOptions> = ref({
 <script>
 ```
 
-#### 2、顶部标题需要左右切换月份，中间显示日期，格式`YYYY年M月`，右侧可以选择月份；
+#### 2、顶部标题需要左右切换月份，中间显示日期，格式 `YYYY年M月` ，右侧可以选择月份；
 
-- 显示日期
+* 显示日期
 
 看文档没有看到头部插槽，直接隐藏日历头部，自己写
-```js
-import { CalendarOptions } from '@fullcalendar/core'; //类型定义
 
-const calendarOptions: Ref<CalendarOptions> = ref({
- ...
- headerToolbar: false
+```js
+import {
+  CalendarOptions
+} from '@fullcalendar/core'; //类型定义
+
+const calendarOptions: Ref < CalendarOptions > = ref({
+  ...
+  headerToolbar: false
 })
 ```
-- 左右切换月份
 
-`getApi`可以获取`FullCalendar`里面的方法
+* 左右切换月份
+
+`getApi` 可以获取 `FullCalendar` 里面的方法
   
+
 ```js
-import { CalendarApi } from '@fullcalendar/core'; //类型定义
+import {
+  CalendarApi
+} from '@fullcalendar/core'; //类型定义
 
 /** 日历ref */
 const fullCalendarRef = ref(null);
 /** 日历的api */
-let fullcalendarApi = ref<CalendarApi>();
+let fullcalendarApi = ref < CalendarApi > ();
 onMounted(() => {
   fullcalendarApi.value = Object.getOwnPropertyDescriptor(
     fullCalendarRef.value,
@@ -91,15 +101,17 @@ fullcalendarApi.value?.prev();
 fullcalendarApi.value?.next();
 ```
 
-- 右侧可以选择月份
-项目用的`antd vue`组件库，`picker`属性为`month`即可选择月份
-``` vue
+* 右侧可以选择月份
+项目用的 `antd vue` 组件库， `picker` 属性为 `month` 即可选择月份
+
+```vue
 <template>
   <a-date-picker picker="month" @change="handleMonthChange"/>
 </template>
 ```
 
-`gotoDate`即可切换日历的月份
+`gotoDate` 即可切换日历的月份
+
 ```ts
 /** 选择月份change事件 */
 const handleMonthChange = (date) => {
@@ -109,26 +121,29 @@ const handleMonthChange = (date) => {
 ```
 
 #### 3、左侧是日历，选择日期后在右侧提交表单，提交后在对应的日期上显示内容，点击日期上的内容则删除该日期的内容。
-`events`是响应式数据，不需要调用更新视图的方法，直接修改`events`就能在日历上进行更新了
-```js
-import { Modal } from 'ant-design-vue';
 
-const eventsArr: Ref<any[]> = ref([
-    {
-      id: '1',
-      title: '周末双休',
-      start: '2024-03-18',
-      end: '2024-03-18',
-    },
-    {
-      id: '2',
-      title: '周末双休',
-      start: '2024-03-20',
-      end: '2024-03-20',
-    },
-  ]);
-  // https://fullcalendar.io/docs#toc
-const calendarOptions: Ref<CalendarOptions> = ref({
+`events` 是响应式数据，不需要调用更新视图的方法，直接修改 `events` 就能在日历上进行更新了
+
+```js
+import {
+  Modal
+} from 'ant-design-vue';
+
+const eventsArr: Ref < any[] > = ref([{
+    id: '1',
+    title: '周末双休',
+    start: '2024-03-18',
+    end: '2024-03-18',
+  },
+  {
+    id: '2',
+    title: '周末双休',
+    start: '2024-03-20',
+    end: '2024-03-20',
+  },
+]);
+// https://fullcalendar.io/docs#toc
+const calendarOptions: Ref < CalendarOptions > = ref({
   plugins: [interactionPlugin],
   initialView: 'dayGridMonth',
   selectable: true, // 表格可选择，依赖 `interactionPlugin` 插件
@@ -163,10 +178,14 @@ const onFinish = (values: any) => {
   });
 };
 ```
+
 ### 最后实现的效果图
+
 ![QQ202438-123620.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6928d29fe3b248c99f615e41c96f32f3~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1716&h=792&s=1797432&e=gif&f=381&b=faf9f6)
+
 ### 完整代码
-``` ts
+
+```ts
 <template>
     <div class="lg:flex p4">
       <!-- 左侧日历 -->
@@ -230,6 +249,7 @@ const onFinish = (values: any) => {
     </div>
 </template>
 ```
+
 ```ts
 <script lang="ts" setup>
   import { Ref, onMounted, reactive, ref } from 'vue';
@@ -383,6 +403,7 @@ const onFinish = (values: any) => {
 ```
 
 ### 总结
-`fullcalendar`这个库很强大，还有很多其他的功能，这里我只使用到了选择表格的功能。
+
+`fullcalendar` 这个库很强大，还有很多其他的功能，这里我只使用到了选择表格的功能。
 
 缺点是文档不易阅读也不能搜索，demo示例太少，配置全靠别人博客里的注释来理解，不像组件库的文档把各种配置和demo都详细列出来。
