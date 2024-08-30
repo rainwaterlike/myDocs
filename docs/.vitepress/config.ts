@@ -35,30 +35,6 @@ export default defineConfig({
         sidebar: {
             '/': [
                 {
-                    text: 'JavaScript',
-                    link: '/src/JavaScript/',
-                },
-                {
-                    text: 'vue',
-                    link: '/src/vue/index',
-                }, 
-                {
-                    text: 'css',
-                    link: '/src/css/index',
-                },
-                {
-                    text: 'FullCalendar',
-                    link: '/src/FullCalendar/index',
-                },
-                {
-                    text: 'dayjs',
-                    link: '/src/dayjs/index',
-                },
-                {
-                    text: 'vscode',
-                    link: '/src/vscode/index',
-                },
-                {
                     text: 'TypeScript',
                     link: '/src/TypeScript/index',
                     collapsed: true, //默认收起
